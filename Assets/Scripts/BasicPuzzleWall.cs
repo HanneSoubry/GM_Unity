@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BasicPuzzleWall : BasicPuzzle
 {
-    
+    // not moving 
 }

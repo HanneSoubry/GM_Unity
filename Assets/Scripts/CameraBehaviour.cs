@@ -7,7 +7,7 @@ public class CameraBehaviour : MonoBehaviour
     [SerializeField] private GameObject _player = null;
     [SerializeField] private float _followSpeed = 5.0f;
 
-    void FixedUpdate()
+    void FixedUpdate()  // follow player
     {
         if (_player != null)
         {

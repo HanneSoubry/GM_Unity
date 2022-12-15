@@ -5,11 +5,32 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     protected MovementBehaviour _movementBehaviour;
-
+    protected Collider _collider;
     protected virtual void Awake()
     {
+        // cache components
         _movementBehaviour = GetComponent<MovementBehaviour>();
         _lastMousePos = Input.mousePosition;
+        _collider = GetComponent<Collider>();
+    }
+
+    private int _collectedGold = 0;
+    private bool _finalTreasureCollected = false;
+    public int Gold
+    {
+        get { return _collectedGold; }
+        set { _collectedGold = value; }
+    }
+    public bool FinalTreasureCollected
+    {
+        get { return _finalTreasureCollected; }
+    }
+
+
+    public int GoldForReset(int penalty)
+    {
+        // pass nr to levelmanager, save for scene reset
+        return _collectedGold - penalty;
     }
 
     const string MOVEMENT_HORIZONTAL = "MovementHorizontal";
@@ -19,6 +40,24 @@ public class PlayerCharacter : MonoBehaviour
     private void Update()
     {
         HandleMovementInput();
+    }
+
+    const string TAG_GOLD = "Gold";
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == TAG_GOLD)
+        {
+            Gold gold = collision.gameObject.GetComponent<Gold>();
+            if (gold.Destroyed == false)    // gold not about to be destroyed
+            {
+                _collectedGold += gold.Worth;
+                gold.Collected = true;
+                if(gold.Final == true)
+                {
+                    _finalTreasureCollected = true;
+                }
+            }
+        }
     }
 
     private Vector3 _lastMousePos = Vector3.zero;
@@ -50,5 +89,4 @@ public class PlayerCharacter : MonoBehaviour
 
         _lastMousePos = Input.mousePosition;
     }
-    
 }

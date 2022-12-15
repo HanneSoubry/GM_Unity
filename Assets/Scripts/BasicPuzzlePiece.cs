@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicPuzzlePiece : BasicPuzzle
 {
-    protected float _turnSpeed = 45;  // degrees/second
+    protected float _turnSpeed = 90;  // degrees/second
     public float TurnSpeed
     {
         get { return _turnSpeed; }
@@ -26,10 +26,24 @@ public class BasicPuzzlePiece : BasicPuzzle
             angle -= (_angleDone - pieceSize);  // eventueel teveel aftrekken
             _angleDone = 0;
             done = true;
+
+            if(direction == -1)
+            {
+                --LocationNr;
+                if (LocationNr == 0)
+                    LocationNr = nrPieces;
+            }
+            else if (direction == 1)
+            {
+                ++LocationNr;
+                if (LocationNr > nrPieces)
+                    LocationNr = 1;
+            }
         }
 
         angle *= direction;
-        transform.Rotate(transform.forward, angle);
+        //transform.Rotate(transform.forward, angle);
+        transform.Rotate(Vector3.forward, angle);
 
         return done;
     }

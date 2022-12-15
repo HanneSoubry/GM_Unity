@@ -5,6 +5,17 @@ using UnityEngine;
 public class BasicPuzzle : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
+    public  MeshRenderer GetMeshRenderer()
+    {
+        return _meshRenderer;
+    }
+
+    private int _locationNr = 0;
+    public int LocationNr
+    { 
+        get { return _locationNr; }
+        set { _locationNr = value; }
+    }
 
     private void Awake()
     {
@@ -13,7 +24,7 @@ public class BasicPuzzle : MonoBehaviour
 
     public bool Compare(BasicPuzzle other)
     {
-        if (_meshRenderer.sharedMaterial.GetColor("_Color") == other._meshRenderer.sharedMaterial.GetColor("_Color"))
+        if (_meshRenderer.sharedMaterial == other._meshRenderer.sharedMaterial)
         {
             return true;
         }
