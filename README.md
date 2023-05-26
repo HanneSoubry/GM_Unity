@@ -7,6 +7,6 @@ The story of the game is about an adventurer who finds a old lost temple and nee
 You can solve the puzzles by rotating the circles in the walls to try to match the colors with both the colors around it and those inside the circles.
 (This project had focus on the mechanics so the art looks quite minimal)
 
-![picture1](Images/Screenshot1.png)
-![picture2](Images/Screenshot2.png)
-![picture3](Images/Screenshot3.png)
+<img src="Images/Screenshot1.png" width="400"/>
+<img src="Images/Screenshot2.png" width="400"/>
+<img src="Images/Screenshot3.png" width="400"/>
