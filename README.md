@@ -1,4 +1,4 @@
-# GM_Unity
+# Puzzle Temple
 
 This is an assignment for the course Game Mechanics in DAE. 
 For this project, we used Unity.
